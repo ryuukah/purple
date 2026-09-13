@@ -1,0 +1,311 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background: #191919;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 35px;
+}
+
+
+/* WHITE PLAYER */
+
+.player {
+  width: min(1100px, 100%);
+  min-height: 650px;
+
+  background: #fdfdfd;
+
+  border-radius: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+
+/* PLAYER AREA */
+
+.player-content {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* CLICKABLE ALBUM */
+
+.album-button {
+  position: relative;
+
+  width: min(680px, 90vw);
+  aspect-ratio: 1.75 / 1;
+
+  border: 0;
+  padding: 0;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  isolation: isolate;
+}
+
+
+/* IMAGE */
+
+.cover {
+  position: absolute;
+
+  z-index: 2;
+
+  left: 0;
+  top: 50%;
+
+  width: 58%;
+  aspect-ratio: 1 / 1;
+
+  object-fit: cover;
+
+  transform: translateY(-50%);
+
+  display: block;
+
+  user-select: none;
+  -webkit-user-drag: none;
+
+  transition:
+    filter 0.2s ease,
+    transform 0.1s ease;
+}
+
+
+/* CD */
+
+.cd {
+  position: absolute;
+
+  z-index: 1;
+
+  right: 0;
+  top: 50%;
+
+  width: 58%;
+  aspect-ratio: 1 / 1;
+
+  border-radius: 50%;
+
+  transform: translateY(-50%);
+
+  background:
+    radial-gradient(
+      circle at 33% 28%,
+      rgba(255, 255, 255, 0.95) 0 2%,
+      transparent 2.5%
+    ),
+
+    conic-gradient(
+      from 15deg,
+      #eeeeee,
+      #d9e2e5,
+      #fff7d9,
+      #dbeef0,
+      #f5dfe5,
+      #eeeeee,
+      #cfdde0,
+      #ffffff,
+      #e5dff0,
+      #eeeeee
+    );
+
+  box-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.18),
+    inset 0 0 16px rgba(80, 80, 80, 0.18);
+
+  overflow: hidden;
+}
+
+
+/* CD OUTER RING */
+
+.cd::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 7%;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(100, 100, 100, 0.18);
+
+  box-shadow:
+    inset 0 0 18px rgba(255, 255, 255, 0.8),
+    0 0 0 1px rgba(255, 255, 255, 0.25);
+}
+
+
+/* CD INNER RING */
+
+.cd::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 18%;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(120, 120, 120, 0.13);
+}
+
+
+/* CD LIGHT */
+
+.cd-shine {
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      105deg,
+      transparent 25%,
+      rgba(255, 255, 255, 0.65) 42%,
+      transparent 52%
+    );
+
+  opacity: 0.75;
+}
+
+
+/* CD RINGS */
+
+.cd-ring {
+  position: absolute;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(110, 110, 110, 0.14);
+}
+
+.ring-1 {
+  inset: 30%;
+}
+
+.ring-2 {
+  inset: 38%;
+}
+
+
+/* CD CENTER */
+
+.cd-center {
+  position: absolute;
+
+  width: 23%;
+  aspect-ratio: 1;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background: #dfe2e3;
+
+  border: 1px solid rgba(100, 100, 100, 0.2);
+
+  box-shadow:
+    inset 0 0 7px rgba(80, 80, 80, 0.22);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* CD HOLE */
+
+.cd-hole {
+  width: 43%;
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+
+  background: #fdfdfd;
+
+  border: 1px solid rgba(120, 120, 120, 0.16);
+}
+
+
+/* HOVER */
+
+.album-button:hover .cover {
+  filter: brightness(0.96);
+}
+
+
+/* CLICK EFFECT */
+
+.album-button:active .cover {
+  transform: translateY(-50%) scale(0.985);
+}
+
+
+/* SPINNING CD */
+
+.cd.is-spinning {
+  animation: spin 2.2s linear infinite;
+}
+
+@keyframes spin {
+
+  from {
+    transform: translateY(-50%) rotate(0deg);
+  }
+
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+  body {
+    padding: 15px;
+  }
+
+  .player {
+    min-height: 500px;
+    border-radius: 18px;
+  }
+
+  .album-button {
+    width: min(580px, 92vw);
+  }
+
+}
