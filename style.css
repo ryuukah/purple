@@ -5,6 +5,7 @@
 html,
 body {
   margin: 0;
+  width: 100%;
   min-height: 100%;
 }
 
@@ -16,55 +17,45 @@ body {
   align-items: center;
   justify-content: center;
 
-  padding: 35px;
+  padding: 20px;
 }
 
 
-/* WHITE PLAYER */
+/* PLAYER */
 
 .player {
-  width: min(1100px, 100%);
-  min-height: 650px;
-
-  background: #fdfdfd;
-
-  border-radius: 24px;
+  width: 100%;
+  background: #191919;
 
   display: flex;
   align-items: center;
   justify-content: center;
-
-  overflow: hidden;
 }
 
 
 /* PLAYER AREA */
 
 .player-content {
-  width: 100%;
-
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 
-/* CLICKABLE ALBUM */
+/* CLICKABLE AREA */
 
 .album-button {
   position: relative;
 
-  width: min(680px, 90vw);
-  aspect-ratio: 1.75 / 1;
+  /* Smaller overall player */
+  width: 420px;
+  height: 260px;
 
   border: 0;
   padding: 0;
-
   background: transparent;
 
   cursor: pointer;
-
-  isolation: isolate;
 }
 
 
@@ -78,8 +69,8 @@ body {
   left: 0;
   top: 50%;
 
-  width: 58%;
-  aspect-ratio: 1 / 1;
+  width: 260px;
+  height: 260px;
 
   object-fit: cover;
 
@@ -90,9 +81,7 @@ body {
   user-select: none;
   -webkit-user-drag: none;
 
-  transition:
-    filter 0.2s ease,
-    transform 0.1s ease;
+  transition: filter 0.2s ease;
 }
 
 
@@ -101,13 +90,18 @@ body {
 .cd {
   position: absolute;
 
+  /* Behind the image */
   z-index: 1;
 
-  right: 0;
+  /*
+    Starts underneath the image.
+    This makes about half of it visible.
+  */
+  left: 130px;
   top: 50%;
 
-  width: 58%;
-  aspect-ratio: 1 / 1;
+  width: 260px;
+  height: 260px;
 
   border-radius: 50%;
 
@@ -119,7 +113,6 @@ body {
       rgba(255, 255, 255, 0.95) 0 2%,
       transparent 2.5%
     ),
-
     conic-gradient(
       from 15deg,
       #eeeeee,
@@ -142,13 +135,12 @@ body {
 }
 
 
-/* CD OUTER RING */
+/* CD DETAILS */
 
 .cd::before {
   content: "";
 
   position: absolute;
-
   inset: 7%;
 
   border-radius: 50%;
@@ -160,14 +152,10 @@ body {
     0 0 0 1px rgba(255, 255, 255, 0.25);
 }
 
-
-/* CD INNER RING */
-
 .cd::after {
   content: "";
 
   position: absolute;
-
   inset: 18%;
 
   border-radius: 50%;
@@ -175,12 +163,8 @@ body {
   border: 1px solid rgba(120, 120, 120, 0.13);
 }
 
-
-/* CD LIGHT */
-
 .cd-shine {
   position: absolute;
-
   inset: 0;
 
   border-radius: 50%;
@@ -192,12 +176,7 @@ body {
       rgba(255, 255, 255, 0.65) 42%,
       transparent 52%
     );
-
-  opacity: 0.75;
 }
-
-
-/* CD RINGS */
 
 .cd-ring {
   position: absolute;
@@ -214,9 +193,6 @@ body {
 .ring-2 {
   inset: 38%;
 }
-
-
-/* CD CENTER */
 
 .cd-center {
   position: absolute;
@@ -235,16 +211,12 @@ body {
 
   border: 1px solid rgba(100, 100, 100, 0.2);
 
-  box-shadow:
-    inset 0 0 7px rgba(80, 80, 80, 0.22);
+  box-shadow: inset 0 0 7px rgba(80, 80, 80, 0.22);
 
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
-
-/* CD HOLE */
 
 .cd-hole {
   width: 43%;
@@ -252,7 +224,7 @@ body {
 
   border-radius: 50%;
 
-  background: #fdfdfd;
+  background: #191919;
 
   border: 1px solid rgba(120, 120, 120, 0.16);
 }
@@ -265,21 +237,13 @@ body {
 }
 
 
-/* CLICK EFFECT */
-
-.album-button:active .cover {
-  transform: translateY(-50%) scale(0.985);
-}
-
-
-/* SPINNING CD */
+/* SPINNING */
 
 .cd.is-spinning {
   animation: spin 2.2s linear infinite;
 }
 
 @keyframes spin {
-
   from {
     transform: translateY(-50%) rotate(0deg);
   }
@@ -287,25 +251,27 @@ body {
   to {
     transform: translateY(-50%) rotate(360deg);
   }
-
 }
 
 
-/* MOBILE */
+/* SMALL SCREENS */
 
-@media (max-width: 700px) {
-
-  body {
-    padding: 15px;
-  }
-
-  .player {
-    min-height: 500px;
-    border-radius: 18px;
-  }
+@media (max-width: 500px) {
 
   .album-button {
-    width: min(580px, 92vw);
+    width: 330px;
+    height: 200px;
+  }
+
+  .cover {
+    width: 200px;
+    height: 200px;
+  }
+
+  .cd {
+    width: 200px;
+    height: 200px;
+    left: 100px;
   }
 
 }
